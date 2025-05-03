@@ -1,5 +1,5 @@
 def generate_invoice():
-    print("🧾 Invoice Generator\n")
+    print("Invoice Generator\n")
     items = []
 
     while True:
