@@ -20,9 +20,16 @@ def generate_invoice():
         subtotal += total
         print(f"{item['name']} (x{item['quantity']}): ₹{total:.2f}")
 
-    tax = subtotal * 0.18  # 18% tax
-    grand_total = subtotal + tax
-    print(f"\nSubtotal: ₹{subtotal:.2f}")
+    print(f"\nSubtotal: ₹{subtotal:.2f}") # Print original subtotal first
+
+    discount = 0.0
+    if subtotal > 1000:
+        discount = subtotal * 0.035
+        print(f"Discount (3.5%): -₹{discount:.2f}")
+        subtotal -= discount # Apply discount before tax calculation
+
+    tax = subtotal * 0.18  # 18% tax - calculated on potentially discounted subtotal
+    grand_total = subtotal + tax # Grand total uses discounted subtotal
     print(f"Tax (18%): ₹{tax:.2f}")
     print(f"Total: ₹{grand_total:.2f}")
     print("---------------------")
